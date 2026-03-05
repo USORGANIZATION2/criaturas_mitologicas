@@ -1,82 +1,98 @@
+// URL base del almacenamiento en Azure.
+// Se obtiene desde las variables de entorno de Vite (archivo .env)
+export const STORAGE_URL = import.meta.env.VITE_AZURE_STORAGE_URL;
 
-export const STOREGE_URL= import.meta.env.VITE_AZURE_STORAGE_URL;
 
 /*
-* Construye la URL completa de imagen para una raza.
+ * Construye la URL completa de una imagen.
+ * Recibe el nombre del archivo y lo concatena con la ruta del contenedor
+ * de imágenes dentro del almacenamiento de Azure.
  */
-export function getImageUrl(file){
-    return  `${STOREGE_URL}/imagenes/${file}`;
+export function getImageUrl(file) {
+    return `${STORAGE_URL}/imagenes/${file}`;
 }
 
-export function getVideoURL(name){
-    return  `${STOREGE_URL}/videos/${name}`;
+
+/*
+ * Construye la URL completa de un video.
+ * Recibe el nombre del archivo de video y lo concatena
+ * con la carpeta "videos" del almacenamiento.
+ */
+export function getVideoURL(name) {
+    return `${STORAGE_URL}/videos/${name}`;
 }
 
-export function getPdfURL(name){
-    return  `${STOREGE_URL}/pdfs/${name}`;
+
+/*
+ * Construye la URL completa de un archivo PDF.
+ * Recibe el nombre del archivo PDF y lo concatena
+ * con la carpeta "pdfs" del almacenamiento.
+ */
+export function getPdfURL(name) {
+    return `${STORAGE_URL}/pdfs/${name}`;
 }
 
+
+/*
+ * Simula la obtención de datos de animales.
+ * En lugar de llamar a una API real, retorna una Promise
+ * con un arreglo de objetos que representan animales.
+ *
+ * Cada animal contiene:
+ * - id: identificador único
+ * - file: nombre de la imagen
+ * - title: nombre del animal
+ * - desc: descripción del animal
+ */
 export async function getAnimals() {
-// Simula una llamada asíncrona para que el patrón sea reemplazable por fetch()
     return Promise.resolve([
         {
-            file: "fenix.jpg",
-            name: "FeniX",
+            id: 1,
+            file: "fenix.png",
+            title: "Fenix",
             desc: "Ágil y curioso, siempre en movimiento",
         },
         {
-            file: "pegaso.jpg",
-            name: "Pegaso",
+            id: 2,
+            file: "pegaso.png",
+            title: "Pegaso",
             desc: "Salvaje por fuera, tierno por dentro",
         },
         {
-            file: "ninfo.jpg",
-            name: "Grifo",
-            desc: "El gigante gentil ",
+            id: 3,
+            file: "ninfo.png",
+            title: "Grifo",
+            desc: "El gigante gentil",
         }
+    ]);
+}
 
-])};
 
-
+/*
+ * Simula la obtención de los videos de los animales.
+ * Retorna una Promise con un arreglo de objetos que contienen:
+ * - id: identificador del animal
+ * - file: nombre del archivo de video
+ */
 export async function getAnimalsVideo() {
-// Simula una llamada asíncrona para que el patrón sea reemplazable por fetch()
     return Promise.resolve([
-        {
-            file: "fenix_video.mp4",
-            name: "Fenix",
-            desc: "Ágil y curioso, siempre en movimiento",
-        },
-        {
-            file: "pegaso_video.mp4",
-            name: "Pegaso",
-            desc: "Salvaje por fuera, tierno por dentro",
-        },
-        {
-            file: "ninfo_video.mp4",
-            name: "Grifo",
-            desc: "El gigante gentil ",
-        }
+        { id: 1, file: "fenix_video.mp4" },
+        { id: 2, file: "pegaso_video.mp4" },
+        { id: 3, file: "ninfo_video.mp4" },
+    ]);
+}
 
-])};
 
-export async function getAnimals() {
-// Simula una llamada asíncrona para que el patrón sea reemplazable por fetch()
+/*
+ * Simula la obtención de archivos PDF relacionados con los animales.
+ * Cada objeto contiene:
+ * - id: identificador del animal
+ * - file: nombre del archivo PDF
+ */
+export async function getAnimalsPdf() {
     return Promise.resolve([
-        {
-            file: "fenix.pdf.pdf",
-            name: "FeniX",
-            desc: "Ágil y curioso, siempre en movimiento",
-        },
-        {
-            file: "pegaso.pdf.pdf",
-            name: "Pegaso",
-            desc: "Salvaje por fuera, tierno por dentro",
-        },
-        {
-            file: "ninfo.pdf.pdf",
-            name: "Grifo",
-            desc: "El gigante gentil ",
-        }
-
-])};
-
+        { id: 1, file: "Fenix_pdf.pdf" },
+        { id: 2, file: "Pegaso_pdf.pdf" },
+        { id: 3, file: "ninfo_pdf.pdf" },
+    ]);
+}
