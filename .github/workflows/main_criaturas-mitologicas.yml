@@ -61,5 +61,5 @@ jobs:
         with:
           app-name: 'criaturas-mitologicas'
           slot-name: 'Production'
-          package: .
+          package: dist
           
